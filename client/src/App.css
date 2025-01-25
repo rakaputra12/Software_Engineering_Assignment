@@ -1,0 +1,11 @@
+@import "tailwindcss";
+
+
+/* Remove any unnecessary constraints from App.css */
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
