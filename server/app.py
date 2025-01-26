@@ -25,12 +25,9 @@ async def get_events(
     city: str = Query("New York", description="City to search for events"),
     category: str = Query("", description="Event category (e.g., 'Music')"),
     radius: int = Query(10, description="Radius in kilometers to search within"),
-    max_results: int = Query(100, description="Maximum number of events to return")  # Limit total results
+    max_results: int = Query(100, description="Maximum number of events to return")  
 ):
-    """
-    Fetch events from the Ticketmaster Discovery API based on city, category, and radius.
-    Supports up to max_results by paginating API calls.
-    """
+    
     url = "https://app.ticketmaster.com/discovery/v2/events.json"
     size_per_request = 200  # Maximum allowed by the API
     total_events = []  # Store all events
@@ -61,6 +58,8 @@ async def get_events(
                     start_time = start_info.get("dateTime") or start_info.get("localDate")
                     venue_data = event["_embedded"]["venues"][0] if "_embedded" in event and "venues" in event["_embedded"] else {}
                     venue_name = venue_data.get("name") or venue_data.get("address", {}).get("line1") or "Unknown Venue"
+                    latitude = venue_data.get("location", {}).get("latitude")
+                    longitude = venue_data.get("location", {}).get("longitude")
                     image_url = event.get("images", [{}])[0].get("url", None)
 
                     total_events.append({
@@ -69,7 +68,11 @@ async def get_events(
                         "url": event["url"],
                         "start_time": start_time,
                         "venue": venue_name,
-                        "image": image_url
+                        "image": image_url,
+                        "location": {
+                            "lat": float(latitude) if latitude else None,
+                            "lng": float(longitude) if longitude else None
+                        }
                     })
 
                 # Stop if fewer events are returned than the requested size

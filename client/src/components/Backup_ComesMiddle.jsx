@@ -141,113 +141,89 @@ const StartPage = () => {
         } overflow-y-auto`} // Enable scrolling for large content
         style={{ height: "auto", overflowY: "auto" }}
       >
-        <div className="flex flex-col md:flex-row items-center justify-between w-full">
-          {!hasSearched && (
-            <div className="hidden md:block w-1/3 text-gray-600 text-center">
-              <h3 className="text-xl font-bold">Discover Events Near You</h3>
-              <p className="mt-2">
-                Find the best concerts, sports games, and theater shows in your
-                area with just a few clicks!
-              </p>
-            </div>
-          )}
-          <div
-            className={`p-4 bg-white rounded-lg shadow-lg ${
-              hasSearched
-              ? "flex flex-row gap-4 w-full max-w-7xl scale-100"
-              : "flex-col space-y-6 w-full max-w-lg scale-90 "
+    
+        <div
+          className={`p-4 bg-white rounded-lg shadow-lg ${
+            hasSearched
+              ? "flex flex-row gap-4 w-full max-w-7xl"
+              : "flex-col space-y-6 w-full max-w-lg"
+          } transition-all duration-1000 ease-in-out`}
+        >
+          <h1
+            className={`text-3xl font-bold mb-4 text-center text-blue-600`}
+            style={{ marginTop: "30px" }}
+          >
+            Eventure
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className={`flex flex-1 ${
+              hasSearched ? "flex-row items-center gap-4" : "flex-col space-y-6"
             } transition-all duration-1000 ease-in-out`}
           >
-            <h1
-              className={`text-3xl font-bold mb-4 text-center text-blue-600`}
-              style={{ marginTop: "30px" }}
-            >
-              Eventure
-            </h1>
-            <form
-              onSubmit={handleSubmit}
-              className={`flex flex-1 ${
-                hasSearched
-                  ? "flex-row items-center gap-4"
-                  : "flex-col space-y-6"
-              } transition-all duration-1000 ease-in-out`}
-            >
-              <div className="flex-1">
-                <label
-                  htmlFor="city"
-                  className="block text-gray-700 font-medium"
-                >
-                  City
-                </label>
-                <input
-                  type="text"
-                  id="city"
-                  value={city}
-                  onChange={(e) => setCity(e.target.value)}
-                  className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Enter a city"
-                  required
-                />
-              </div>
-              <div className="flex-1">
-                <label
-                  htmlFor="category"
-                  className="block text-gray-700 font-medium"
-                >
-                  Category
-                </label>
-                <select
-                  id="category"
-                  value={category}
-                  onChange={(e) => setCategory(e.target.value)}
-                  className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
-                >
-                  <option value="">Select a category</option>
-                  {categoryOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              <div className="flex-1">
-                <label
-                  htmlFor="radius"
-                  className="block text-gray-700 font-medium"
-                >
-                  Radius (km)
-                </label>
-                <input
-                  type="number"
-                  id="radius"
-                  value={radius}
-                  onChange={(e) => setRadius(e.target.value)}
-                  className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="e.g., 10"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className={`${
-                  hasSearched ? "self-center" : "w-full"
-                } bg-blue-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700`}
-                style={{ marginTop: "20px", padding: "10px" }}
-              >
-                {loading ? "Loading..." : "Find Events"}
-              </button>
-            </form>
-          </div>
-          {!hasSearched && (
-            <div className="hidden md:block w-1/3 text-gray-600 text-center">
-              <h3 className="text-xl font-bold">Save Your Favorites</h3>
-              <p className="mt-2">
-                Bookmark events you love and never miss out on the action. Your
-                personalized event planner is here.
-              </p>
+            <div className="flex-1">
+              <label htmlFor="city" className="block text-gray-700 font-medium">
+                City
+              </label>
+              <input
+                type="text"
+                id="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter a city"
+                required
+              />
             </div>
-          )}
+            <div className="flex-1">
+              <label
+                htmlFor="category"
+                className="block text-gray-700 font-medium"
+              >
+                Category
+              </label>
+              <select
+                id="category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                required
+              >
+                <option value="">Select a category</option>
+                {categoryOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="flex-1">
+              <label
+                htmlFor="radius"
+                className="block text-gray-700 font-medium"
+              >
+                Radius (km)
+              </label>
+              <input
+                type="number"
+                id="radius"
+                value={radius}
+                onChange={(e) => setRadius(e.target.value)}
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., 10"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              className={`${
+                hasSearched ? "self-center" : "w-full"
+              } bg-blue-600 text-white py-3 rounded-md text-lg font-semibold hover:bg-blue-700`}
+              style={{ marginTop: "20px", padding: "10px" }}
+            >
+              {loading ? "Loading..." : "Find Events"}
+            </button>
+          </form>
         </div>
 
         {/* Event List and Map */}
