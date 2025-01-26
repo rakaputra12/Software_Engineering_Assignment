@@ -261,6 +261,7 @@ const StartPage = () => {
                     className={`p-4 bg-white rounded-lg shadow-md border hover:shadow-lg transition-shadow mb-4 cursor-pointer ${
                       selectedEventId === event.id ? "border-blue-600" : ""
                     }`}
+                    data-testid={`event-card-${event.id}`} // Add a data-testid for better testing
                     onClick={() =>
                       handleEventClick(event.id, [
                         event.location.lat,
@@ -313,6 +314,8 @@ const StartPage = () => {
                             ? "bg-red-500 text-white"
                             : "bg-gray-300 text-black"
                         }`}
+                        data-testid={`bookmark-button-${event.id}`} // Add a unique data-testid
+
                       >
                         {isFavorite(event.id) ? "Unbookmark" : "Bookmark"}
                       </button>
