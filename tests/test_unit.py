@@ -43,5 +43,5 @@ class TestEventAPI(unittest.TestCase):
 
 '''Run the test suite
 1. Go to Directory /Software_Engineering_Assignment
-2. python -m unittest discover -s tests
+2. python3 -m unittest discover -s tests
 '''

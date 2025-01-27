@@ -19,14 +19,14 @@ try:
     # Debug city input
     print("Locating city input...")
     city_input = wait.until(EC.presence_of_element_located((By.ID, "city")))
-    print(f"City input found: {city_input.get_attribute('outerHTML')}")
+    print(f"City input found")
     city_input.send_keys("Berlin")
     print("City input filled.")
 
     # Debug category select
     print("Locating category dropdown...")
     category_select = wait.until(EC.presence_of_element_located((By.ID, "category")))
-    print(f"Category dropdown found: {category_select.get_attribute('outerHTML')}")
+    print(f"Category dropdown found")
     select = Select(category_select)
     select.select_by_visible_text("Music")
     print("Category selected.")
@@ -34,14 +34,14 @@ try:
     # Debug radius input
     print("Locating radius input...")
     radius_input = driver.find_element(By.ID, "radius")
-    print(f"Radius input found: {radius_input.get_attribute('outerHTML')}")
+    print(f"Radius input found")
     radius_input.send_keys("10")
     print("Radius input filled.")
 
     # Debug Find Events button
     print("Locating Find Events button...")
     find_events_button = driver.find_element(By.XPATH, "//button[contains(text(), 'Find Events')]")
-    print(f"Find Events button found: {find_events_button.get_attribute('outerHTML')}")
+    print(f"Find Events button found")
     find_events_button.click()
     print("Find Events button clicked.")
     time.sleep(2)
@@ -49,12 +49,12 @@ try:
     # Locate an event card
     print("Locating an event card...")
     event_card = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "[data-testid^='event-card']")))
-    print("Event card found:", event_card.get_attribute("outerHTML"))
+    print("Event card found")
 
     # Debug bookmark button
     print("Locating bookmark button...")
     bookmark_button = driver.find_element(By.XPATH, "//button[contains(text(), 'Bookmark')]")
-    print(f"Bookmark button found: {bookmark_button.get_attribute('outerHTML')}")
+    print(f"Bookmark button found")
     bookmark_button.click()
     print("Bookmark button clicked.")
 
