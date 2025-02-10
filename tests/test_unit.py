@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import patch
 from fastapi.testclient import TestClient
-from server.app import app  # Import your FastAPI app correctly
+from server.app import app  
 
 client = TestClient(app)
 
 class TestEventAPI(unittest.TestCase):
-    @patch("server.app.requests.get")  # Adjust the patch path based on your module
+    @patch("server.app.requests.get")  
     def test_get_events(self, mock_get):
         # Mock API response
         mock_response = {
@@ -15,7 +15,7 @@ class TestEventAPI(unittest.TestCase):
                     {
                         "id": "1",
                         "name": "Concert",
-                        "url": "https://example.com/event",  # Include the 'url' key
+                        "url": "https://example.com/event", 
                         "dates": {"start": {"dateTime": "2025-02-01T20:00:00Z"}},
                         "_embedded": {
                             "venues": [
@@ -38,7 +38,7 @@ class TestEventAPI(unittest.TestCase):
         self.assertIn("events", response.json())
         self.assertEqual(len(response.json()["events"]), 1)
         self.assertEqual(response.json()["events"][0]["name"], "Concert")
-        self.assertEqual(response.json()["events"][0]["url"], "https://example.com/event")  # Verify 'url'
+        self.assertEqual(response.json()["events"][0]["url"], "https://example.com/event") 
 
 
 '''Run the test suite

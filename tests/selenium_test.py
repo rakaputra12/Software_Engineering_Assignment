@@ -5,14 +5,13 @@ from selenium.webdriver.support.ui import WebDriverWait, Select
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-# Initialize the Selenium WebDriver
 driver = webdriver.Chrome()
 
 try:
     print("Opening the application...")
     driver.get("http://localhost:5173")
     driver.maximize_window()
-    time.sleep(2)  # Allow the page to load
+    time.sleep(2) 
 
     wait = WebDriverWait(driver, 10)
 
